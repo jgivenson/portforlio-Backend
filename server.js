@@ -1,5 +1,5 @@
 require('dotenv').config()
-
+const cors = require('cors')
 const express = require('express')
 const mongoose = require('mongoose');
 const testimonialRoutes = require('./routes/testimonial');
@@ -9,6 +9,13 @@ const app = express();
 
 //middleware
 app.use(express.json());
+
+const CorsOptions={
+    origin:["http:localhost:3000"],
+    credentials:true,
+
+};
+app.use(cors(CorsOptions))
 app.use((req,res,next) =>{
     console.log(req.path,req.method)
     next()
